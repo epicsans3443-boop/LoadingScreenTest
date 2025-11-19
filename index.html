@@ -392,6 +392,13 @@
     window.rules = JSON.parse('[{\u0022rule\u0022:\u0022Just don\\u0027t be a dumbass and don\\u0027t make things that could ruin the experience for others.\u0022}]');
 
     window.music = [];
+    window.KLoad = window.KLoad || {}; 
+
+// 2. Iniciar la rotación de fondos
+window.KLoad.Backgrounds = KLoad.Backgrounds.init(
+    window.backgrounds, 
+    window.globalConfig.backgrounds
+);
 </script>
 
 

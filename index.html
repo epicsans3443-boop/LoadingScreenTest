@@ -367,7 +367,7 @@
         <div id="loading-bar-outer">
             <div class="loading-bar" style="width: 72%;"></div>
         </div>
-        <p class="messages" style="opacity: 1;">It might take a little while, but not too long.</p>
+        <p class="messages" style="opacity: 1;"></p>
     </div>
 
     <div id="music-block" class="fixed bottom left music-container hide">
@@ -724,7 +724,8 @@
     var message_counter = 0;
     // CORRECCIÓN: Usar window.messages
     if(window.messages[message_counter]) { 
-        text('.messages', window.messages[message_counter].message);
+        // CORRECCIÓN 3: Eliminamos esta línea para que la barra de mensajes inicie vacía.
+        // text('.messages', window.messages[message_counter].message); 
 
         var message_rotation = setInterval(function() {
             message_counter++;
@@ -1019,7 +1020,6 @@
                             nextSib.classList.add('active');
                         }, 100);
                     }.bind(rules_block), window.globalConfig.rules.fade);
-                }, window.globalConfig.rules.duration);
             }
         }
     }

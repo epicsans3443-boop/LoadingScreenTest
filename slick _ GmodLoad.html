@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)https://gmodload.com/hns/loading?steamid=%s&map=%m -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>slick | GmodLoad</title>
+    
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com/">
+    <link rel="dns-prefetch" href="https://steamcdn-a.akamaihd.net/">
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com/">
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+
+    <style>
+    /*
+    * K-Load v2 (https://demo.maddela.org/k-load/).
+    *
+    * @link      https://www.maddela.org
+    * @link      https://github.com/kanalumaddela/k-load-v2
+    *
+    * @author    kanalumaddela <git@maddela.org>
+    * @copyright Copyright (c) 2018-2021 kanalumaddela
+    * @license   MIT
+    */
+
+    *, *:before, *:after {
+        -webkit-box-sizing: inherit;
+        box-sizing: inherit;
+    }
+
+    html {
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        font-family: sans-serif;
+        /*color: #fff;*/
+        /*background-color: #000;*/
+    }
+
+    body:before {
+        z-index: -999999;
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    body, .no-margin {
+        margin: 0 !important;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .linear-transition {
+        -webkit-transition: all 0.3s linear;
+    }
+
+    .fixed-background, .overlay, .overlay:before {
+        z-index: -99999;
+        position: fixed;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+
+    .overlay:before {
+        content: '';
+    }
+
+    .overlay {
+        background-color: rgba(0, 0, 0, 0.45);
+    }
+
+    .overlay.dark {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .overlay.dots {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADAQMAAABs5if8AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAAAAKVnuc8AAAABdFJOUwBA5thmAAAADElEQVQI12NoYAACAAKGAIH/kuy5AAAAAElFTkSuQmCC');
+    }
+
+    .overlay.vertical {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElFTkSuQmCC);
+    }
+
+    .overlay.horizontal {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgwAUYGRgY/sM4AAkrAQG/PtYkAAAAAElFTkSuQmCC);
+    }
+
+    .overlay.diagonal-left {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAAAAKVnuc8AAAABdFJOUwBA5thmAAAAEElEQVQI12MQYFBgcGBoAAACWADxfYADLwAAAABJRU5ErkJggg==');
+    }
+
+    .overlay.diagonal-right {
+        background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAEAQMAAACTPww9AAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAAGUExURQAAAAAAAKVnuc8AAAABdFJOUwBA5thmAAAAEElEQVQI12NoYHBgUGAQAAAFOADxk53MZwAAAABJRU5ErkJggg==');
+    }
+
+    .plz-hide, .hide {
+        display: none;
+    }
+
+    .fucking-hide {
+        display: none !important;
+    }
+
+    .avatar {
+        max-width: 175px;
+    }
+
+    .avatar.medium {
+        max-width: 125px;
+    }
+
+    .avatar.small {
+        max-width: 75px;
+    }
+
+    .avatar.extra.small {
+        max-width: 25px;
+    }
+
+    .avatar.circle {
+        border-radius: 50%;
+    }
+
+    .avatar.shadow {
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
+    }
+
+    .pure-center {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+    }
+
+    .pure-center.relative {
+        position: relative;
+    }
+
+    .center-text {
+        text-align: center;
+    }
+
+    .fade-in {
+        opacity: 0;
+        -webkit-animation-name: fade-in;
+        -webkit-animation-fill-mode: forwards;
+        -webkit-animation-duration: 1s;
+    }
+
+    .fade-in.long {
+        -webkit-animation-duration: 3s;
+    }
+
+    .fade-in.delay {
+        -webkit-animation-delay: .75s;
+    }
+
+    .fade-in.long.delay {
+        -webkit-animation-delay: 2s;
+    }
+
+    .messages {
+        opacity: 1;
+        -webkit-transition: opacity 1s ease;
+    }
+
+    @-webkit-keyframes fade-in {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes fade-out {
+        from {
+            opacity: 1;
+        }
+        to {
+            opacity: 0;
+        }
+    }
+
+    .fixed {
+        position: fixed;
+    }
+
+    .fixed.top {
+        top: 0;
+    }
+
+    .fixed.bottom {
+        bottom: 0;
+    }
+
+    .fixed.left {
+        left: 0;
+    }
+
+    .fixed.right {
+        right: 0;
+    }
+
+    .fixed.vertical-center {
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+    }
+
+    .fixed.horizontal-center {
+        left: 50%;
+        -webkit-transform: translateX(-50%);
+    }
+
+    .loading-bar {
+        max-width: 100%;
+        height: 5px;
+        -webkit-transition: all 0.3s linear;
+    }
+
+    .svg-icon {
+        width: 25px;
+        height: 25px;
+    }
+
+    .svg-icon path {
+        fill: currentColor;
+    }
+
+    .k-load-staff-block, .k-load-rule-block {
+        display: none;
+        opacity: 0;
+        -webkit-transition: opacity 1s ease;
+    }
+
+    .k-load-rule-block {
+        -webkit-transition: opacity .5s ease;
+    }
+
+    .k-load-staff-block.active, .k-load-rule-block.active {
+        opacity: 1;
+    }
+    .k-load-staff-avatar {
+        font-size: 0;
+    }
+
+    #k-load-rules {
+        counter-reset: rule;
+    }
+
+    .k-load-rule {
+        counter-increment: rule;
+    }
+
+</style>
+
+            <link rel="stylesheet" href="./slick _ GmodLoad_files/css">
+
+        <style>
+    /*
+     * K-Load v2 (https://demo.maddela.org/k-load/).
+     *
+     * @link      https://www.maddela.org
+     * @link      https://github.com/kanalumaddela/k-load-v2
+     *
+     * @author    kanalumaddela <git@maddela.org>
+     * @copyright Copyright (c) 2018-2019 Maddela
+     * @license   MIT
+     */
+
+    body {
+        font-family: 'Quicksand', sans-serif;
+        font-weight: 400;
+        color: #fff;
+        text-shadow: 0 2px 5px rgba(0, 0, 0, 0.65);
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 400;
+    }
+
+    b {
+        font-weight: 700;
+    }
+
+    #info-block, #music-block {
+        left: 15px;
+    }
+
+    #music-block {
+        bottom: 15px;
+        height: 50px;
+        vertical-align: middle;
+        -webkit-transition: opacity .2s ease;
+    }
+
+    .community-name {
+        margin: 15px 0 10px 0;
+        font-weight: 300;
+        font-size: 3rem;
+    }
+
+    .pure-center {
+        width: 80%;
+        text-align: center;
+    }
+
+    #loading-bar-outer {
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    #loading-bar-outer, .loading-bar {
+        height: 5px;
+        border-radius: 3px;
+    }
+
+    .loading-bar {
+        background-color: #f5f5f5;
+        -webkit-transition: 0.25s linear;
+    }
+
+    .current-song {
+        margin: 0;
+        font-weight: 700;
+        font-size: 1.25rem;
+    }
+</style>
+
+        <style>
+            body:before {
+                background-image: url(https://cdn.gmodload.com/assets/img/backgrounds/global/particles_purple.jpg);
+            }
+        </style>
+    
+    <style>
+        
+                    .bg-primary-50{background-color: rgb(246,250,254);}.text-primary-50{color: rgb(246,250,254);}.bg-primary-100{background-color: rgb(236,244,254);}.text-primary-100{color: rgb(236,244,254);}.bg-primary-200{background-color: rgb(208,228,251);}.text-primary-200{color: rgb(208,228,251);}.bg-primary-300{background-color: rgb(179,212,249);}.text-primary-300{color: rgb(179,212,249);}.bg-primary-400{background-color: rgb(122,179,245);}.text-primary-400{color: rgb(122,179,245);}.bg-primary-500{background-color: rgb(65,147,240);}.text-primary-500{color: rgb(65,147,240);}.bg-primary-600{background-color: rgb(59,132,216);}.text-primary-600{color: rgb(59,132,216);}.bg-primary-700{background-color: rgb(49,110,180);}.text-primary-700{color: rgb(49,110,180);}.bg-primary-800{background-color: rgb(39,88,144);}.text-primary-800{color: rgb(39,88,144);}.bg-primary-900{background-color: rgb(32,72,118);}.text-primary-900{color: rgb(32,72,118);}
+        
+        
+            </style>
+</head>
+<audio autoplay loop style="display:none">
+  <source src="musica.ogg" type="audio/ogg">
+</audio>
+<body class="">
+
+<div class="overlay "></div>
+
+    <div id="info-block" class="fixed top left">
+        <h1 class="community-name">HNS</h1>
+        <p>we are currently playing <b><span class="gamemode">sandbox</span></b> on <b><span class="map">gm_construct</span></b></p>
+    </div>
+
+    <div class="pure-center">
+        <p class="status">Downloading example/folder/file-oVAlzZcT0VSW.ext</p>
+        <div id="loading-bar-outer">
+            <div class="loading-bar" style="width: 62%;"></div>
+        </div>
+        <p class="messages" style="opacity: 1;">Hide well, don't get caught!</p>
+    </div>
+
+    <div id="music-block" class="fixed bottom left music-container hide">
+        <p style="margin:0;">you are listening to</p>
+        <p class="current-song"></p>
+    </div>
+<script type="text/javascript">
+    window.globalConfig = JSON.parse('{\u0022backgrounds\u0022:{\u0022random\u0022:true,\u0022fade\u0022:1000,\u0022duration\u0022:5000},\u0022messages\u0022:{\u0022random\u0022:true,\u0022fade\u0022:1000,\u0022duration\u0022:5000},\u0022staff\u0022:{\u0022duration\u0022:6000,\u0022perPage\u0022:1},\u0022rules\u0022:{\u0022perPage\u0022:4,\u0022fade\u0022:500,\u0022duration\u0022:8000},\u0022music\u0022:{\u0022volume\u0022:10}}');
+
+    window.backgrounds = JSON.parse('[\u0022https:\\\/\\\/cdn.gmodload.com\\\/41744\\\/6UvM3K80agybWTuFBP44omfMFUhE9L-metabW9rZXkyICgxKS5qcGc=-.jpg\u0022,\u0022https:\\\/\\\/cdn.gmodload.com\\\/41745\\\/aXQtIMpdt3PN2PMPIpSZdtRgKkmFtU-metac21vcnQgKDEpLmpwZw==-.jpg\u0022,\u0022https:\\\/\\\/cdn.gmodload.com\\\/41746\\\/gWlNOFAHhHSq4Fwowaa2h70mp4E1vh-metaY2hyaXN0bWFzIDIgKDEpLnBuZw==-.png\u0022]');
+
+    window.messages = JSON.parse('[{\u0022message\u0022:\u0022Have fun!\u0022},{\u0022message\u0022:\u0022Hide well, don\\u0027t get caught!\u0022},{\u0022message\u0022:\u0022It might take a little while, but not too long.\u0022},{\u0022message\u0022:\u0022If you die, you are death\u0022},{\u0022message\u0022:\u0022Remember, some pills are better than others\u0022},{\u0022message\u0022:\u0022Don\\u0027t make chaos, don\\u0027t be silly!\u0022}]');
+
+    window.staff = JSON.parse('[{\u0022steamid\u0022:\u002276561199818668884\u0022,\u0022rank\u0022:\u0022Administrator\u0022,\u0022order\u0022:0,\u0022steamid2\u0022:\u0022STEAM_0:0:929201578\u0022,\u0022steamid3\u0022:\u0022[U:1:1858403156]\u0022,\u0022communityvisibilitystate\u0022:3,\u0022profilestate\u0022:1,\u0022personaname\u0022:\u0022epicsans3443\u0022,\u0022profileurl\u0022:\u0022https:\\\/\\\/steamcommunity.com\\\/profiles\\\/76561199818668884\\\/\u0022,\u0022avatar\u0022:\u0022https:\\\/\\\/avatars.steamstatic.com\\\/2abbaec6f260ce0a3facfe02ce10b322b4ab8c09.jpg\u0022,\u0022avatarmedium\u0022:\u0022https:\\\/\\\/avatars.steamstatic.com\\\/2abbaec6f260ce0a3facfe02ce10b322b4ab8c09_medium.jpg\u0022,\u0022avatarfull\u0022:\u0022https:\\\/\\\/avatars.steamstatic.com\\\/2abbaec6f260ce0a3facfe02ce10b322b4ab8c09_full.jpg\u0022,\u0022avatarhash\u0022:\u00222abbaec6f260ce0a3facfe02ce10b322b4ab8c09\u0022,\u0022personastate\u0022:1,\u0022primaryclanid\u0022:\u0022103582791429521408\u0022,\u0022timecreated\u0022:1736884686,\u0022personastateflags\u0022:0,\u0022gameextrainfo\u0022:\u0022Garry\\u0027s Mod\u0022,\u0022gameid\u0022:\u00224000\u0022}]');
+
+    window.rules = JSON.parse('[{\u0022rule\u0022:\u0022Just don\\u0027t be a dumbass and don\\u0027t make things that could ruin the experience for others.\u0022}]');
+
+    window.music = [];
+</script>
+
+
+<script type="text/javascript">
+    var currentProgress, demoInterval;
+
+    const gamemodes = {
+        cinema: 'Cinema',
+        demo: 'Demo',
+        darkrp: 'DarkRP',
+        deathrun: 'Deathrun',
+        jailbreak: 'Jailbreak',
+        melonbomber: 'Melon Bomber',
+        militaryrp: 'MilitaryRP',
+        murder: 'Murder',
+        morbus: 'Morbus',
+        policerp: 'PoliceRP',
+        prophunt: 'Prophunt',
+        sandbox: 'Sandbox',
+        santosrp: 'SantosRP',
+        schoolrp: 'SchoolRP',
+        starwarsrp: 'SWRP',
+        stopitslender: 'Stop it Slender',
+        slashers: 'Slashers',
+        terrortown: 'TTT',
+    };
+
+    const elem = function (tag, attrs, children) {
+        const elem = document.createElement(tag);
+
+        Object.keys(attrs).forEach(function (key) {
+            if (key in document.createElement(tag)) {
+                elem[key] = attrs[key];
+            } else {
+                elem.setAttribute(key, attrs[key]);
+            }
+        });
+
+        if (Array.isArray(children)) {
+            children.forEach(function (child) {
+                if (typeof child === "string") {
+                    child = document.createTextNode(child);
+                }
+                elem.appendChild(child);
+            });
+        }
+
+        return elem;
+    };
+
+    const clearChildren = function (parent) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    };
+
+    /**
+     * Generate a random string.
+     *
+     * @returns {string}
+     */
+    const str_random = function () {
+        return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    };
+
+    /**
+     * {@link https://stackoverflow.com/a/1349426}
+     *
+     * @param length
+     * @returns {string}
+     */
+    const str_random_v2 = function (length) {
+        var text = "";
+        const possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        if (!length) {
+            length = 12;
+        }
+
+        for (var i = 0; i < length; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+
+        return text;
+    };
+
+    /**
+     * Return a NodeList matching the given selector.
+     *
+     * @param {string} selector
+     * @returns {NodeListOf<Element>}
+     */
+    const getElements = function (selector) {
+        return document.querySelectorAll(selector);
+    };
+
+    const randColor = function () {
+        return "#" + ((1 << 24) * Math.random() | 0).toString(16);
+    };
+
+    const shuffle = function (array) {
+        var i, j = 0, temp = null;
+
+        for (i = array.length - 1; i > 0; i -= 1) {
+            j = Math.floor(Math.random() * (i + 1));
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    };
+
+    const text = function (selector, text) {
+        [].forEach.call(getElements(selector), function (elem) {
+            elem.textContent = text;
+        });
+    };
+
+    const width = function (selector, width) {
+        [].forEach.call(getElements(selector), function (elem) {
+            elem.style.width = width;
+        });
+    };
+
+    const image = function (selector, src) {
+        [].forEach.call(getElements(selector), function (elem) {
+            elem.src = src;
+        });
+    };
+
+    const clamp = function (num, min, max) {
+        if (!min && !max) {
+            console.error('clamp() min and max not defined!');
+            return;
+        }
+
+        if (!max) {
+            max = Infinity;
+        }
+        if (!min) {
+            min = -Infinity;
+        }
+
+        return Math.min(Math.max(num, min), max);
+    };
+
+    const rgbToRgba = function (rgb, alpha) {
+        return rgb.replace('rgb', 'rgba').replace(')', ','+alpha+')');
+    };
+</script>
+<script type="text/javascript">
+    var KLoad = {
+        isGmod: navigator.userAgent.toLowerCase().indexOf('valve') !== -1,
+        loadingHooks: {},
+        events: {},
+        data: {
+            demoMode: false,
+            volume: 15,
+            GameDetails: {},
+            files: {
+                downloaded: 0,
+                needed: 1,
+                total: 1,
+                downloadComplete: false,
+            },
+        },
+        finishedStatuses: [
+            'Sending client info...',
+            'Client info sent!',
+            'Received all Lua files we needed!',
+            'No files to request!',
+            'Starting Lua...',
+        ],
+        tmp: {
+            ignoreLoadings: false,
+            lastFileDownloaded: null,
+            statuses: [],
+            progressRegex: /(\d+)\/(\d+)/,
+        }
+    };
+
+
+    KLoad.emit = function (event) {
+        if (typeof KLoad.events[event] !== 'undefined') {
+            const args = [].slice.call(arguments);
+            args.shift();
+
+            KLoad.events[event].forEach(function (func) {
+                func.apply(null, args);
+            });
+        }
+    };
+
+    KLoad.on = function (event, func) {
+        if (typeof KLoad.events[event] === 'undefined') {
+            KLoad.events[event] = [];
+        }
+
+        KLoad.events[event].push(func);
+    };
+
+    KLoad.on('GameDetails', function (servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language, gamemodeNice) {
+        KLoad.data.GameDetails.servername = servername;
+        KLoad.data.GameDetails.serverurl = serverurl;
+        KLoad.data.GameDetails.mapname = mapname;
+        KLoad.data.GameDetails.maxplayers = maxplayers;
+        KLoad.data.GameDetails.steamid = steamid;
+        KLoad.data.GameDetails.gamemode = gamemode;
+        KLoad.data.GameDetails.volume = volume;
+        KLoad.data.GameDetails.language = language;
+        KLoad.data.GameDetails.gamemodeNice = gamemodeNice;
+
+        text('.server-name', servername);
+        text('.server-url', serverurl);
+        text('.map', mapname);
+        text('.mapname', mapname);
+        text('.max-players', maxplayers);
+        text('.steamid', steamid);
+        text('.gamemode', gamemode);
+        text('.volume', volume);
+        text('.language', language);
+        text('.gamemodeNice', gamemodeNice);
+    });
+
+    KLoad.on('SetFilesTotal', function (total) {
+        KLoad.data.files.total = total;
+        text('.files-total', total);
+    });
+
+    KLoad.on('SetFilesNeeded', function (needed) {
+        KLoad.data.files.needed = needed;
+        text('.files-needed', needed);
+    });
+
+    KLoad.getProgress = function () {
+        const progress = KLoad.data.files.downloaded / KLoad.data.files.needed;
+
+        return {
+            progress: KLoad.data.files.downloadComplete ? 1 : progress,
+            percentage: KLoad.data.files.downloadComplete ? 100 : Math.round(progress * 100)
+        }
+    }
+
+    KLoad.on('DownloadingFile', function (file) {
+        KLoad.data.files.downloaded++;
+
+        if ((KLoad.data.files.needed <= 0 || KLoad.data.files.downloaded >= KLoad.data.files.needed) && !KLoad.data.demoMode) {
+            SetFilesNeeded(KLoad.data.files.downloaded + 1);
+        }
+
+        KLoad.tmp.lastFileDownloaded = file;
+
+        SetStatusChanged('Downloading ' + file);
+        text('.files-downloading', file);
+
+        if (!KLoad.data.files.downloadComplete) {
+            KLoad.emit('DownloadProgress', KLoad.getProgress());
+        }
+    });
+
+    KLoad.on('DownloadProgress', function (data) {
+        text('.files-downloaded', KLoad.data.files.downloaded);
+        text('.percentage', data.percentage + '%');
+
+        [].forEach.call(document.querySelectorAll('.loading-bar, .loading-bar--vertical'), function (elem) {
+            if (elem.classList.contains('.loading-bar--vertical')) {
+                elem.style.height = data.percentage + '%';
+            } else {
+                elem.style.width = data.percentage + '%';
+            }
+        });
+    });
+
+    KLoad.on('SetStatusChanged', function (status) {
+        if (status.indexOf('Extracting') !== -1 || status.indexOf('Retrieving') !== -1) {
+            return;
+        }
+
+        const i = status.indexOf('Loading');
+        if (i !== -1) {
+            if (status.indexOf(KLoad.tmp.lastFileDownloaded) === -1) {
+                KLoad.data.files.downloaded++;
+                KLoad.emit('DownloadProgress', KLoad.getProgress());
+            }
+
+            status = status.substr(i);
+        }
+
+        text('.status', status);
+
+        if (KLoad.finishedStatuses.indexOf(status) !== -1) {
+            KLoad.data.files.downloadComplete = true;
+
+            KLoad.emit('DownloadProgress', {
+                progress: 1,
+                percentage: 100
+            });
+        }
+    });
+
+    KLoad.init = function () {
+        window.GameDetails = function (servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language) {
+            KLoad.emit('GameDetails', servername, serverurl, mapname, maxplayers, steamid, gamemode, volume, language)
+        };
+
+        window.SetFilesTotal = function (total) {
+            KLoad.emit('SetFilesTotal', total);
+        };
+
+        window.SetFilesNeeded = function (needed) {
+            KLoad.emit('SetFilesNeeded', needed);
+        };
+
+        window.DownloadingFile = function (fileName) {
+            KLoad.emit('DownloadingFile', fileName);
+        };
+
+        window.SetStatusChanged = function (status) {
+            KLoad.emit('SetStatusChanged', status);
+        };
+    };
+
+    // shuffle before anything is called
+    shuffle(window.backgrounds)
+    shuffle(window.messages)
+    shuffle(window.music)
+
+    function onMessageContainers(callback) {
+        [].forEach.call(document.querySelectorAll('.messages'), callback);
+    }
+
+    var message_counter = 0;
+    if(messages[message_counter]) {
+        text('.messages', messages[message_counter].message);
+
+        var message_rotation = setInterval(function() {
+            message_counter++;
+            if (message_counter >= messages.length) {
+                message_counter = 0;
+            }
+
+            onMessageContainers(function (el) {
+                el.style.opacity = '0';
+
+                setTimeout(function () {
+                    onMessageContainers(function (el) {
+                        el.innerText = messages[message_counter].message;
+                        el.style.opacity = '1';
+                    })
+                }, 1000);
+            });
+        }, window.globalConfig.messages.duration + 500);
+    }
+
+    var gmodload = {};
+    KLoad.Backgrounds = {
+        init: function (backgrounds, options) {
+            this.setBackgrounds(backgrounds);
+            this.setOptions(options);
+            this.setupCss();
+            this.setupContainer();
+            this.data = {
+                currentIndex: -1,
+                backgroundChildren: 0,
+                activeBackgrounds: [],
+                timer: null,
+            }
+
+            if (backgrounds && backgrounds.length) {
+                this.start();
+            }
+
+            return this;
+        },
+
+        start: function () {
+            [].forEach.call(this.backgrounds, function (url) {
+                this.container.appendChild(this.createBackground(url))
+            }.bind(this));
+
+            this.data.activeBackgrounds = this.backgrounds;
+            this.data.backgroundChildren = this.container.querySelectorAll('.bg-item');
+
+            this.nextBackground();
+
+            if (this.data.activeBackgrounds.length > 1) {
+                this.data.timer = setInterval(function () {
+                    this.nextBackground();
+                }.bind(this), this.options.duration);
+            }
+        },
+
+        nextBackground: function () {
+            this.data.currentIndex++;
+
+            if (this.data.currentIndex >= this.data.activeBackgrounds.length) {
+                this.data.currentIndex = 0;
+            }
+
+            const indx = this.data.currentIndex;
+
+            this.data.backgroundChildren[indx].style.opacity = '1';
+
+            if (this.data.activeBackgrounds.length > 1) {
+                if (indx === 0) {
+                    this.data.backgroundChildren[this.data.activeBackgrounds.length-1].style.opacity = '0';
+                } else {
+                    this.data.backgroundChildren[indx-1].style.opacity = '0';
+                }
+            }
+
+            return this;
+        },
+
+        setupContainer: function () {
+            this.container = document.querySelector('.k-load-background-container');
+
+            if (!this.container) {
+                window.document.body.innerHTML += '<div class="k-load-background-container"></div>';
+                this.container = document.querySelector('.k-load-background-container');
+            }
+
+            return this;
+        },
+
+        setupCss: function () {
+            window.document.body.innerHTML += '<style>body > .k-load-background-container {z-index: -999999;pointer-events: none;position: fixed;top: 50%;left: 50%;width: 110%;height: 110%;-webkit-transform: translate(-50%, -50%)}.k-load-background-container > .bg-item {z-index: -9998;position: absolute;width: 100%;height: 100%;background-size: cover;background-position: center;opacity: 0;-webkit-transition: opacity '+(Math.round(this.options.fade/1000*100)/100)+'s ease-in;}</style>';
+
+            return this;
+        },
+
+        setBackgrounds: function (backgrounds) {
+            if (!backgrounds) {
+                backgrounds = [];
+            }
+
+            this.backgrounds = backgrounds;
+
+            return this;
+        },
+
+        getBackgrounds: function () {
+            return this.backgrounds;
+        },
+
+        createBackground: function (imageUrl) {
+            const div = document.createElement('div');
+
+            div.className = 'bg-item';
+            div.style.backgroundImage = 'url('+imageUrl+')';
+
+            return div;
+        },
+
+        setOptions: function (options) {
+            if (!options) {
+                options = {};
+            }
+
+            this.options = {
+                random:  options.hasOwnProperty('random') ? options.random : true,
+                fade:  options.hasOwnProperty('fade') ? options.fade : 750,
+                duration:  options.hasOwnProperty('duration') ? options.duration : 5*1000,
+            }
+
+            return this;
+        },
+
+        getOptions: function () {
+            return this.options;
+        }
+    }
+
+    KLoad.Music = {
+        init: function (music, volume) {
+            if (!volume) {
+                volume = 0;
+            }
+
+            this.data = {
+                currentIndex: -1,
+                currentlyPlaying: null,
+                songs: [],
+                songNames: [],
+            };
+
+            this.setVolume(volume);
+            this.setMusic(music);
+
+            if (this.data.songs.length) {
+                this.start();
+            }
+
+            return this;
+        },
+
+        start: function () {
+            [].forEach.call(document.querySelectorAll('.music-container'), function (el) {
+                el.style.display = 'block';
+            });
+            this.nextSong();
+            KLoad.emit('MusicStarted');
+        },
+
+        nextSong: function () {
+            this.data.currentIndex++;
+
+            if (this.data.currentIndex >= this.data.songs.length) {
+                this.data.currentIndex = 0;
+            }
+
+            if (this.data.currentlyPlaying) {
+                this.data.currentlyPlaying.pause();
+                this.data.currentlyPlaying.currentTime = 0;
+            }
+
+            this.audios[this.data.currentIndex].volume = this.volume;
+            this.audios[this.data.currentIndex].play();
+
+            this.data.currentlyPlaying = this.audios[this.data.currentIndex];
+            text('.current-song', this.data.currentlyPlaying.title);
+            KLoad.emit('CurrentSong', this.data.currentlyPlaying.title);
+        },
+
+        setMusic: function (music) {
+            if (!music) {
+                music = [];
+            }
+
+            this.data.currentIndex = -1;
+            this.data.songs = music;
+            this.data.songNames = [];
+            this.audios = [];
+
+            [].forEach.call(this.data.songs, function (song) {
+                const aud = new Audio(song.url);
+
+                aud.addEventListener('ended', function () {
+                    this.nextSong();
+                }.bind(this));
+                aud.volume = this.volume;
+                aud.title = song.name;
+
+                this.audios.push(aud);
+                this.data.songNames.push(song.name);
+            }.bind(this));
+
+            return this;
+        },
+
+        setVolume: function (volume) {
+            if (!volume && volume !== 0) {
+                volume = 10;
+            }
+
+            this.volume = volume / 100;
+
+            if (this.data.currentlyPlaying) {
+                this.data.currentlyPlaying.volume = this.volume;
+            }
+
+            return this;
+        }
+    }
+
+    function fixNames(data) {
+        var steamid = data.steamid;
+        text('name_' + steamid, data.personaname);
+    }
+
+    const rules_block = document.getElementById('k-load-rules');
+
+    var rulesInterval, ruleBlockCounter = 0;
+
+    function setRules() {
+        if (rules_block) {
+            clearInterval(rulesInterval);
+            clearChildren(rules_block);
+
+            const num_blocks = Math.ceil(window.rules.length / window.globalConfig.rules.perPage);
+            var ruleCount = 0;
+
+
+            for (var i = 0; i < num_blocks; i++) {
+                var children = [];
+
+                for (var x = 0; x < window.globalConfig.rules.perPage; x++) {
+                    if (ruleCount < window.rules.length) {
+                        children.push(
+                            elem('div', {className: 'k-load-rule', innerText: window.rules[ruleCount].rule})
+                        );
+
+                        ruleCount++;
+                    }
+                }
+
+                rules_block.appendChild(
+                    elem('div', {id: 'k-load-rule-block-' + i, className: 'k-load-rule-block'}, children)
+                );
+            }
+
+            if(!rules_block.childNodes[ruleBlockCounter]) return;
+            rules_block.childNodes[ruleBlockCounter].style.display = 'block';
+            rules_block.childNodes[ruleBlockCounter].classList.add('active');
+
+            if (num_blocks > 1) {
+                rulesInterval = setInterval(function () {
+                    const rules_block = document.getElementById('k-load-rules');
+
+                    rules_block.childNodes[ruleBlockCounter].classList.remove('active');
+                    setTimeout(function () {
+                        rules_block.childNodes[ruleBlockCounter].style.display = 'none';
+
+                        var nextSib = rules_block.childNodes[ruleBlockCounter].nextSibling;
+
+                        if (nextSib) {
+                            ruleBlockCounter++;
+                        } else {
+                            ruleBlockCounter = 0;
+                            nextSib = rules_block.childNodes[ruleBlockCounter];
+                        }
+
+                        nextSib.style.display = 'block';
+
+                        setTimeout(function () {
+                            nextSib.classList.add('active');
+                        }, 100);
+                    }.bind(rules_block), window.globalConfig.rules.fade);
+                }, window.globalConfig.rules.duration);
+            }
+        }
+    }
+
+    KLoad.Rules = {}
+    KLoad.Rules.genericCounterFix = function () {
+        const ruleBlockCssNum = Math.ceil(window.rules.length / window.globalConfig.rules.perPage);
+        var ruleBlockCssFix = '';
+
+        for (var x = 1; x <= ruleBlockCssNum; x++) {
+            ruleBlockCssFix += generateRuleBlockCss(x);
+        }
+
+        function generateRuleBlockCss(nth) {
+            return '.k-load-rule-block:nth-child('+nth+') {counter-reset: rule '+window.globalConfig.rules.perPage*(nth-1)+';}';
+        }
+
+        document.body.innerHTML += '<style>'+ruleBlockCssFix+'</style>';
+    }
+
+    const staff_block = document.getElementById('k-load-staff');
+    var staffInterval, staffBlockCounter = 0, staffActive = false;
+
+    function setStaff() {
+        if (staff_block) {
+            clearInterval(staffInterval);
+            clearChildren(staff_block);
+
+            staffActive = true;
+
+            const num_blocks = Math.ceil(window.staff.length / window.globalConfig.staff.perPage);
+
+            var staffCount = 0;
+            var staff_fade_delay = 1000;
+
+            for (var i = 0; i < num_blocks; i++) {
+                var children = [];
+
+                for (var x = 0; x < window.globalConfig.staff.perPage; x++) {
+                    if (staffCount < staff.length) {
+                        var staff_member = window.staff[staffCount];
+                        children.push(
+                            elem('div', {className: 'k-load-staff'}, [
+                                elem('div', {className: 'k-load-staff-avatar'}, [
+                                    elem('img', {
+                                        className: 'avatar avatar-'+staff_member.steamid
+                                    })
+                                ]),
+                                elem('div', {className: 'k-load-staff-info'}, [
+                                    elem('span', {
+                                        className: 'k-load-staff--name username-' + staff_member.steamid,
+                                        innerText: staff_member.steamid
+                                    }),
+                                    elem('span', {className: 'k-load-staff--rank', innerText: staff_member.rank})
+                                ])
+                            ])
+                        );
+
+                        staffCount++;
+                    }
+                }
+
+                var tmp_staff_block = elem('div', {id: 'k-load-staff-block-' + i, className: 'k-load-staff-block'}, children);
+                staff_block.appendChild(tmp_staff_block);
+            }
+
+            fixStaff(window.staff)
+
+            if (num_blocks > 1) {
+                staffInterval = setInterval(function () {
+                    const staff_block = document.getElementById('k-load-staff');
+
+                    staff_block.childNodes[staffBlockCounter].classList.remove('active');
+                    const tmpCounter = staffBlockCounter;
+                    setTimeout(function () {
+                        staff_block.childNodes[tmpCounter].style.display = 'none';
+
+                        var nextSib = staff_block.childNodes[tmpCounter].nextSibling;
+
+                        if (nextSib) {
+                            staffBlockCounter = tmpCounter+1;
+                        } else {
+                            staffBlockCounter = 0;
+                            nextSib = staff_block.childNodes[staffBlockCounter];
+                        }
+                        nextSib.style.display = 'block';
+
+                        setTimeout(function () {
+                            nextSib.classList.add('active');
+                        }, 100);
+                    }.bind(staff_block), staff_fade_delay / 2);
+                }, window.globalConfig.staff.duration);
+            }
+        }
+    }
+
+    function fixStaff(data) {
+        for (var i = 0; i < data.length; i++) {
+            var row = data[i]
+            text('.username-'+row.steamid, row.personaname);
+            image('.avatar-'+row.steamid, 'https://images.weserv.nl/?url=' + row.avatarmedium);
+        }
+
+        if(!staff_block.childNodes[staffBlockCounter]) return;
+
+        staff_block.childNodes[staffBlockCounter].style.display = 'block';
+        staff_block.childNodes[staffBlockCounter].classList.add('active');
+    }
+
+    setStaff();
+    setRules();
+</script>
+
+
+<script>
+    KLoad.init();
+
+    if(backgrounds.length > 0) {
+        KLoad.Backgrounds.init(backgrounds, window.globalConfig.backgrounds);
+    }
+
+    KLoad.Music.init(music, window.globalConfig.music.volume);
+
+    KLoad.emit('Ready');
+
+    /**
+     * Start up demo mode.
+     */
+    function demoMode() {
+        KLoad.data.demoMode = true;
+
+        SetFilesNeeded(Math.floor(Math.random() * 150) + 75);
+        GameDetails('gmodload', window.location.href, 'gm_construct', 24, '76561197960287930', 'sandbox', Math.floor(Math.random() * 100) + 1, 'en', 'Sandbox');
+
+        demoInterval = setInterval(function () {
+            if (KLoad.data.files.downloaded >= KLoad.data.files.needed) {
+                KLoad.data.files.downloaded = 0;
+            }
+
+            DownloadingFile('example/folder/file-' + str_random_v2() + '.ext');
+        }, 125);
+    }
+
+    /**
+     * If we're not in game, demo the loading screen.
+     */
+    if (!KLoad.isGmod) {
+        demoMode();
+    }
+</script><style>body > .k-load-background-container {z-index: -999999;pointer-events: none;position: fixed;top: 50%;left: 50%;width: 110%;height: 110%;-webkit-transform: translate(-50%, -50%)}.k-load-background-container > .bg-item {z-index: -9998;position: absolute;width: 100%;height: 100%;background-size: cover;background-position: center;opacity: 0;-webkit-transition: opacity 1s ease-in;}</style><div class="k-load-background-container"><div class="bg-item" style="background-image: url(&quot;https://cdn.gmodload.com/41744/6UvM3K80agybWTuFBP44omfMFUhE9L-metabW9rZXkyICgxKS5qcGc=-.jpg&quot;); opacity: 1;"></div><div class="bg-item" style="background-image: url(&quot;https://cdn.gmodload.com/41746/gWlNOFAHhHSq4Fwowaa2h70mp4E1vh-metaY2hyaXN0bWFzIDIgKDEpLnBuZw==-.png&quot;); opacity: 0;"></div><div class="bg-item" style="background-image: url(&quot;https://cdn.gmodload.com/41745/aXQtIMpdt3PN2PMPIpSZdtRgKkmFtU-metac21vcnQgKDEpLmpwZw==-.jpg&quot;); opacity: 0;"></div></div>
+
+
+<script id="plausible-script">!function(){"use strict";var t=window.location,e=window.document,a=e.getElementById("plausible-script");function i(t){console.warn("Ignoring Event: "+t)}function n(n,r){if(/^localhost$|^127(\.[0-9]+){0,2}\.[0-9]+$|^\[::1?\]$/.test(t.hostname)||"file:"===t.protocol)return i("localhost");if(!(window._phantom||window.__nightmare||window.navigator.webdriver||window.Cypress)){try{if("true"===window.localStorage.plausible_ignore)return i("localStorage flag")}catch(l){}var s={};s.n=n,s.u=t.href,s.d=a.getAttribute("data-domain"),s.r=e.referrer||null,s.w=window.innerWidth,r&&r.meta&&(s.m=JSON.stringify(r.meta)),r&&r.props&&(s.p=r.props);var o=new XMLHttpRequest;o.open("POST","https://analytics.physgun.com/api/event",!0),o.setRequestHeader("Content-Type","text/plain"),o.send(JSON.stringify(s)),o.onreadystatechange=function(){4===o.readyState&&r&&r.callback&&r.callback()}}}var r=window.plausible&&window.plausible.q||[];window.plausible=n;for(var l,s=0;s<r.length;s++)n.apply(this,r[s]);function o(){l!==t.pathname&&(l=t.pathname,n("pageview"))}var p,c=window.history;c.pushState&&(p=c.pushState,c.pushState=function(){p.apply(this,arguments),o()},window.addEventListener("popstate",o)),"prerender"===e.visibilityState?e.addEventListener("visibilitychange",function(){l||"visible"!==e.visibilityState||o()}):o()}();</script>
+
+
+</body></html>

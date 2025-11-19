@@ -96,7 +96,7 @@
     }
 
     .overlay.vertical {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElFTkSuQmCC);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElFTkSuQmCC);
     }
 
     .overlay.horizontal {
@@ -724,7 +724,7 @@
     var message_counter = 0;
     // CORRECCIÓN: Usar window.messages
     if(window.messages[message_counter]) { 
-        // CORRECCIÓN 3: Eliminamos esta línea para que la barra de mensajes inicie vacía.
+        // CORRECCIÓN: Eliminamos esta línea para que la barra de mensajes inicie vacía.
         // text('.messages', window.messages[message_counter].message); 
 
         var message_rotation = setInterval(function() {
@@ -1019,7 +1019,7 @@
                         setTimeout(function () {
                             nextSib.classList.add('active');
                         }, 100);
-                    }.bind(rules_block), window.globalConfig.rules.fade);
+                    }.bind(rules_block), window.globalConfig.rules.duration + window.globalConfig.rules.fade);
             }
         }
     }
@@ -1044,6 +1044,14 @@
     KLoad.init();
     KLoad.Backgrounds.init(window.backgrounds, window.globalConfig.backgrounds);
     KLoad.Music.init(window.music, window.globalConfig.music.volume);
+    
+    // CORRECCIÓN 4: Inicialización forzada de reglas y barra de carga para asegurar que los fondos se ejecuten
+    setRules(); 
+
+    if (!KLoad.isGmod) {
+        document.querySelector('.loading-bar').style.backgroundColor = '#4193F0';
+        KLoad.Rules.genericCounterFix();
+    }
 </script>
 
 </body></html>

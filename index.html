@@ -96,7 +96,7 @@
     }
 
     .overlay.vertical {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElFTkSuQmCC);
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAEklEQVQImWNgQID/TEgcBhQOABtaAQQflFz/AAAAAElFTkSuQmCC);
     }
 
     .overlay.horizontal {
@@ -343,7 +343,7 @@
 </style>
 
         <style>
-    /* ESTILOS DE FONDO ELIMINADOS PARA USAR LA ROTACIÓN DEL SCRIPT */
+    /* ELIMINADA LA REFERENCIA A LA IMAGEN REMOTA DE GMODLOAD PARA USAR LA ROTACIÓN DEL SCRIPT */
         </style>
     
     <style>
@@ -363,11 +363,11 @@
     </div>
 
     <div class="pure-center">
-        <p class="status"></p>
+        <p class="status">Downloading example/folder/file-7nZeR9uMWpMP.ext</p>
         <div id="loading-bar-outer">
             <div class="loading-bar" style="width: 72%;"></div>
         </div>
-        <p class="messages" style="opacity: 1;"></p>
+        <p class="messages" style="opacity: 1;">It might take a little while, but not too long.</p>
     </div>
 
     <div id="music-block" class="fixed bottom left music-container hide">
@@ -724,8 +724,7 @@
     var message_counter = 0;
     // CORRECCIÓN: Usar window.messages
     if(window.messages[message_counter]) { 
-        // CORRECCIÓN: Eliminamos esta línea para que la barra de mensajes inicie vacía.
-        // text('.messages', window.messages[message_counter].message); 
+        text('.messages', window.messages[message_counter].message);
 
         var message_rotation = setInterval(function() {
             message_counter++;
@@ -1019,7 +1018,8 @@
                         setTimeout(function () {
                             nextSib.classList.add('active');
                         }, 100);
-                    }.bind(rules_block), window.globalConfig.rules.duration + window.globalConfig.rules.fade);
+                    }.bind(rules_block), window.globalConfig.rules.fade);
+                }, window.globalConfig.rules.duration);
             }
         }
     }
@@ -1044,14 +1044,6 @@
     KLoad.init();
     KLoad.Backgrounds.init(window.backgrounds, window.globalConfig.backgrounds);
     KLoad.Music.init(window.music, window.globalConfig.music.volume);
-    
-    // CORRECCIÓN 4: Inicialización forzada de reglas y barra de carga para asegurar que los fondos se ejecuten
-    setRules(); 
-
-    if (!KLoad.isGmod) {
-        document.querySelector('.loading-bar').style.backgroundColor = '#4193F0';
-        KLoad.Rules.genericCounterFix();
-    }
 </script>
 
 </body></html>
